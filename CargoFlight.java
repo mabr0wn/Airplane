@@ -1,6 +1,6 @@
 package com.pluralsight.airplane;
 /**
-  * added to github by MBROWN 082/17
+  * added to github by MBROWN 08/2/17
   */
 public class CargoFlight extends Flight {
   float maxCargoSpace = 1000.0f;
