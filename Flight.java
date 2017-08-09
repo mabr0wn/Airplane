@@ -1,11 +1,41 @@
-public class Flight {
+package com.pluralsight.airplane;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+/**
+  *Added to github 8/9/17
+  */
+
+public class Flight implements Comparable<Flight>, Iterator<Person> {
   static final int MAX_FAA_SEATS = 550;
   private int passengers, seats = 150;
+  //add wrapper class for null
   private Integer flightNumber;
   private Character flightClass;
   private boolean[] isSeatsAvailable;
+  int checkedBags;
   int totalCheckedBags;
   int maxCarryOns = seats * 2, totalCarryOns;
+  private int flightTime;
+  private CrewMemeber[] crew;
+  private Passenger[] roster;
+  public int compareTo(Flight f) {
+    //if(flightTime < f.flightTime)
+    //return -1
+    //else if(flightTime > f.flightTime)
+    // return 1;
+    //can wirte in simple arithmetic with the Comaprable interface
+    //saying heres that varaible flightTime minus the past in f.flightTime
+    //if passed negative value it will be sorted before
+    //if positive it will be sorted after
+    return flightTime - f.flightTime;
+  }
+  //iterator is also an interface and has two methods on it
+  public Iterator<Person> iterator() {
+    //now we can return back that instance back after creating that class below.
+    return new FlightIterator(crew, roster);
+  }
   //Initializer
   {
     isSeatsAvailable = new boolean[seats];
@@ -35,11 +65,21 @@ public class Flight {
     return newFlight;
   }
       
-//    public void add1Passenger() {
-//        if(passengers < seats)
-//            passengers += 1;
-//    }
+  //    public void add1Passenger() {
+  //        if(passengers < seats)
+  //            passengers += 1;
+  //    }
   //Methods
+  
+  @Override
+  public boolean hasNext() {
+      return false;
+  }
+  
+  @Override
+  public Person next() {
+      return null;
+  }
   
   //Return Passengers
   private int passengers() { return passengers; }
@@ -114,8 +154,4 @@ public class Flight {
     else
       return "Flight identity not set"
   }
- 
-  
-  
-  
 }
