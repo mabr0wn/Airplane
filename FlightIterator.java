@@ -40,6 +40,14 @@ public class FlightIterator implements Iterator<Person> {
     //return the list
     return p;
   }
-  
-  
+ 
+  @Override
+  public String toString() {
+    return "FlightIterator{" +
+           "crew=" + Arrays.toString(crew) +
+           ", roster=" + Arrays.toString(roster) +
+           ", index=" + index +
+           '}';
+   
+  }
 }
