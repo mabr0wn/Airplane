@@ -8,6 +8,7 @@ import java.util.Iterator;
   */
 
 public class Flight implements Comparable<Flight>, Iterator<Person> {
+  //set static final to int which will not ever change
   static final int MAX_FAA_SEATS = 550;
   private int passengers, seats = 150;
   //add wrapper class for null
@@ -37,27 +38,33 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
     return new FlightIterator(crew, roster);
   }
   //Initializer
+  //if seats are avialable add(loop) seats until it reached 150.
   {
     isSeatsAvailable = new boolean[seats];
     for (int i = 0; i < seats; i++)
       isSeatsAvailable[i] = true
   }
-  
-  Flight() { }
-
+  //Constructors
+  Flight() { 
+         //Seats = 150;
+         //passengers = 0;
+  }
+  //Declare variable flightNumber to constructor flightNumber
   Flight(Integer flightNumber) {
           this.flightNumber = flightNumber;
   }
-  
+  //Declare variable flightClass to constructor flightClass
   Flight(Character flightClass) {
     this.flightClass = flightClass;
   }
-  
+  //combine flights if has room loops through passengers as long as less then seats @ 150
   boolean hasRoom(Flight f2) {
     int total = passengers + f2.passengers();
     return total <= seats;
   }
-  
+ 
+  //Create a new flight combine two flights
+ //Passengers from Flight plus passengers from 2nd flgith return newFlight
   Flight createNewWithBoth(Flight f2) {
     Flight newFlight = new Flight();
     newFlight.seats = seats;
@@ -69,8 +76,8 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
   //        if(passengers < seats)
   //            passengers += 1;
   //    }
+ 
   //Methods
-  
   @Override
   public boolean hasNext() {
       return false;
@@ -84,6 +91,8 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
   //Return Passengers
   private int passengers() { return passengers; }
   
+ //Add Ellipse list of passenger(...) since we do not know how many passengers will board plane
+ //Loop through the lsit as long as it hasSeating();
   void add1Passenger(Passenger... list) {
     if(hasSeating(list.length)) {
       passengers += list.length;
@@ -94,7 +103,8 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
   }
   
   private boolean hasSeating(int length) { return hasSeating(); }
-  
+  //add a passenger if seating is available
+ //we may remove since we have ellipse.
   void add1Passenger() {
     if(hasSeating()) 
       passenger += 1;
@@ -122,11 +132,13 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
         
         flightNumber == other.flightNumber && flightClass == other.flightClass;
   }
-  
+  //boolean to return true is less then seats 150;
   private boolean hasSeating() { return passengers < getSeats; }
   
+ //return true as long as carryOns is less then maxCarryOns
   private boolean hasCarryOnSpace(int carrysOns) { return totalCarryOns + carryOns <= maxCarryOns;}
   
+ //Handle too many if there is not enough space
   private void handleToMany() { System.out.println("Too Much Space"); }
   
   //Accessors && Mutators
@@ -137,6 +149,8 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
   
   int getSeats() { return seats = 150;; }
   
+ //if seats is less than MAX_FAA_SEATS
+ //return this(seats)
   void setSeats(int seats) {
     if(seats  <= MAX_FAA_SEATS)
       this.seats = seats;
@@ -154,4 +168,36 @@ public class Flight implements Comparable<Flight>, Iterator<Person> {
     else
       return "Flight identity not set"
   }
+ 
+     //convert objects into strings
+//    @Override
+//    public String toString() {
+//        if(flightNumber != null)
+//            return "Flight #" + flightNumber;
+//        else if(flightClass != null)
+//            return "Flight Class " + flightClass;
+//        else
+//            return "Flight identity not set ";
+//
+//        //create SB builder.
+//    }
+
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "passengers=" + passengers +
+                ", seats=" + seats +
+                ", flightNumber=" + flightNumber +
+                ", flightClass=" + flightClass +
+                ", isSeatAvailble=" + Arrays.toString(isSeatAvailble) +
+                ", checkedBags=" + checkedBags +
+                ", totalCheckedBags=" + totalCheckedBags +
+                ", maxCarryOns=" + maxCarryOns +
+                ", totalCarryOns=" + totalCarryOns +
+                ", flightTime=" + flightTime +
+                ", crew=" + Arrays.toString(crew) +
+                ", roster=" + Arrays.toString(roster) +
+                '}';
+    }
 }
