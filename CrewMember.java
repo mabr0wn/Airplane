@@ -21,7 +21,7 @@ public class CrewMember extends Person {
      //then inside there we basically want to check
      //is there is a valid spot in the pool
      //is the job matches then we know we want that person
-     if(pool[i] != null && pool[i].jon == job) {
+     if(pool[i] != null && pool[i].job == job) {
       //store a reference of them to the pool
       cm = pool[i];
       //will remove them from the pool for two different jobs
