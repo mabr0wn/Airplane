@@ -28,18 +28,18 @@ public class Main {
         //will be last since 45 minutes past 12 midnight
         Flight lax045 = new Flight();
         lax045.setFlightTime(45);
-//will be first 15 minutes past midnight
+	//will be first 15 minutes past midnight
         Flight slc015 = new Flight();
         slc015.setFlightTime(15);
-//will be 2nd 30 minutes past midnight
+	//will be 2nd 30 minutes past midnight
         Flight nyc030 = new Flight();
         nyc030.setFlightTime(30);
 
-//takes the variables and creates an array
+	//takes the variables and creates an array
         Flight[] flights = {
                 lax045, slc015, nyc030
         };
-//will sort the variables according to our compareTo method above.
+	//will sort the variables according to our compareTo method above.
         Arrays.sort(flights);
 
 
